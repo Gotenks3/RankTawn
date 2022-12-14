@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            商品一覧
         </h2>
     </x-slot>
 
@@ -12,7 +12,8 @@
                 @foreach ($products as $product )
                 <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                     <div class=" p-2 md:p-4">
-                        <a href="">
+                        <a href="{{ route('product.show',['id' => $product->id]) }}">
+
                             <div class="border rounded-md p-2 md:p-4">
                                 <img src="{{ asset('images/' . $product->image1) }}" alt="{{ $product->image1 }}">
                                 <div class="text-gray-700">{{ $product->name }}</div>
