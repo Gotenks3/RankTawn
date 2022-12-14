@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
                         商品
                     </x-nav-link>
+                    <x-nav-link :href="route('product.create')" :active="request()->routeIs('product.create')">
+                        出品
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,6 +78,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
                 商品
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('product.create')" :active="request()->routeIs('product.create')">
+                出品
             </x-responsive-nav-link>
         </div>
 
