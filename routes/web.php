@@ -29,12 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Product
-Route::middleware('auth')->group(function () {
-    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-    // Route::patch('/product', [ProductController::class, 'update'])->name('profile.update');
-    // Route::delete('/product', [ProductController::class, 'destroy'])->name('profile.destroy');
-});
+Route::resource('product', ProductController::class)
+->middleware('auth');
 
 require __DIR__.'/auth.php';
