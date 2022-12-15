@@ -5,14 +5,13 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 
 /**
- * @method static static OptionOne()
- * @method static static OptionTwo()
- * @method static static OptionThree()
+ * @method static static Sell()
+ * @method static static Stop()
  */
 final class ProductSelling extends Enum
 {
-    const Sell = 0;
-    const Stop = 1;
+    const Sell = 1;
+    const Stop = 2;
 
      /**
      * Get the description for an enum value
