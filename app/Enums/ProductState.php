@@ -32,7 +32,7 @@ final class ProductState extends Enum
     {
         switch ($value){
             case self::NEW:
-                return '綺麗';
+                return '新品';
                 brake;
             case self::VeryGood:
                 return 'とても綺麗';

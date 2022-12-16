@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Enums\ProductState;
+use App\Enums\ProductSelling;
+use App\Http\Requests\ProductCreateRequest;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
+use App\Services\ImageService;
 
 class ProductController extends Controller
 {
     public function index() 
     {
-        // dd(Product::all());
         $products = Product::all();
         return view('products.index', compact('products'));
     }
@@ -24,26 +29,31 @@ class ProductController extends Controller
 
     public function create() 
     {
+        $status = ProductState::asSelectArray();
+        $sell = ProductSelling::asSelectArray();
 
-        // $products = Product::all();
-        return view('products.create');
+        return view('products.create', compact('status','sell'));
     }
 
-    public function store(Request $request)
+    public function store(ProductCreateRequest $request)
     {
         // dd($request);
+
+        $imageFile = $request->image1;
+
+        $fileNameToStore = ImageService::upload($imageFile, 'products');   
 
         Product::create([
             'name' => $request->name,
             'content' => $request->content,
-            'image1' => 'sample.png',
+            'image1' => $fileNameToStore,
             'image2' => 'sample.png',
             'image3' => 'sample.png',
             'image4' => 'sample.png',
-            'state' => '1',
-            'price' => '1000',
-            'is_selling' => '1'
-        ])->save();
+            'state' => $request->state,
+            'price' => $request->price,
+            'is_selling' => $request->is_selling
+        ]);
 
         return redirect()->route('product.index');
     }
