@@ -15,7 +15,8 @@
                         <a href="{{ route('product.show',['product' => $product->id]) }}">
 
                             <div class="border rounded-md p-2 md:p-4">
-                                <img src="{{ asset('images/' . $product->image1) }}" alt="{{ $product->image1 }}">
+                                <img src="{{ asset('storage/products/' . $product->image1) }}" alt="{{ $product->image1 }}">
+                                     
                                 <div class="text-gray-700">{{ $product->name }}</div>
                             </div>
                         </a>

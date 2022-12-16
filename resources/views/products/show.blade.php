@@ -16,7 +16,7 @@
                             <!-- Additional required wrapper -->
                             <div class="swiper-wrapper">
                                 <!-- Slides -->
-                                <div class="swiper-slide"> <img src="{{ asset('images/' . $product->image1) }}" alt="{{ $product->image1 }}"></div>
+                                <div class="swiper-slide"> <img src="{{ asset('storage/products/' . $product->image1) }}" alt="{{ $product->image1 }}"></div>
                                 <div class="swiper-slide"> <img src="{{ asset('images/' . $product->image2) }}" alt="{{ $product->image2 }}"></div>
                                 <div class="swiper-slide"> <img src="{{ asset('images/' . $product->image3) }}" alt="{{ $product->image3 }}" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
                                 <div class="swiper-slide"> <img src="{{ asset('images/' . $product->image4) }}" alt="{{ $product->image4 }}" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>

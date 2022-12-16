@@ -25,7 +25,7 @@
                             @csrf
 
                             <div class="mb-5">
-                                <input type="file" name="image1">
+                                <input type="file" required name="image1" accept=“image/png,image/jpeg,image/jpg” >
                                 <button>アップロード</button><br>
                             </div>
 
@@ -52,8 +52,8 @@
 
                             {{-- 商品の状態 --}}
                             <select name="state" id="state">
-                                @foreach($status => $state)
-                                <option value=>{{$state}}</option>
+                                @foreach($status as $key => $value)
+                                <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
                             </select>
 

@@ -8,6 +8,9 @@ use App\Enums\ProductState;
 use App\Enums\ProductSelling;
 use App\Http\Requests\ProductCreateRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
+use App\Services\ImageService;
 
 class ProductController extends Controller
 {
@@ -27,50 +30,30 @@ class ProductController extends Controller
     public function create() 
     {
         $status = ProductState::asSelectArray();
-        $statu = ProductState::getValues();
-        dd($statu);
-
-// dd(array_keys($status));
-        foreach($status as $state){
-            dd($state);
-        }
         $sell = ProductSelling::asSelectArray();
 
-        // $products = Product::all();
         return view('products.create', compact('status','sell'));
     }
 
     public function store(ProductCreateRequest $request)
     {
         // dd($request);
-        // dd($request->image1);
 
-        // ディレクトリ名
-        $dir = 'sample';
+        $imageFile = $request->image1;
 
-        // アップロードされたファイル名を取得
-        $file_name = $request->image1['originalName'];
-
-        // 取得したファイル名で保存
-        $request->file('image')->storeAs('public/' . $dir, $file_name);
-
-        // ファイル情報をDBに保存
-        // $image = new Image();
-        // $image->name = $file_name;
-        // $image->path = 
-        // $image->save();
+        $fileNameToStore = ImageService::upload($imageFile, 'products');   
 
         Product::create([
             'name' => $request->name,
             'content' => $request->content,
-            'image1' => 'storage/' . $dir . '/' . $file_name,
+            'image1' => $fileNameToStore,
             'image2' => 'sample.png',
             'image3' => 'sample.png',
             'image4' => 'sample.png',
             'state' => $request->state,
             'price' => $request->price,
             'is_selling' => $request->is_selling
-        ])->save();
+        ]);
 
         return redirect()->route('product.index');
     }

@@ -35,8 +35,8 @@ class ProductCreateRequest extends FormRequest
             'image3' => 'nullable|max:1024|mimes:jpg,jpeg,png,gif',
             'image4'=> 'nullable|max:1024|mimes:jpg,jpeg,png,gif',
             'price' => 'required|numeric|min:300|max:99999',
-            'state' => ['required',  Rule::in((ProductState::class))],
-            'is_selling' =>  ['required', 'string', Rule::in(array_column(ProductSelling::asSelectArray(), 'value'))],
+            'state' => ['required',Rule::in(ProductState::getValues())],
+            'is_selling' =>  ['required', Rule::in(ProductSelling::getValues())],
         ];
     }
 
