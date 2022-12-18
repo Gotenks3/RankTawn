@@ -21,17 +21,10 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->string('name');
             $table->text('content');
-            $table->foreignId('image1')
-            ->constrained('images');
-            $table->foreignId('image2')
-            ->nullable()
-            ->constrained('images');
-            $table->foreignId('image3')
-            ->nullable()
-            ->constrained('images');
-            $table->foreignId('image4')
-            ->nullable()
-            ->constrained('images');
+            $table->string('image1');
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->string('image4')->nullable();
             $table->integer('state');
             $table->unsignedInteger('price');
             $table->boolean('is_selling');
@@ -46,6 +39,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('users');
         Schema::dropIfExists('products');
     }
 };
