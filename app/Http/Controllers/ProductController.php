@@ -39,7 +39,6 @@ class ProductController extends Controller
 
     public function store(ProductCreateRequest $request)
     {
-        dd($request);
         $imageFile1 = $request->image1;
         $imageFile2 = $request->image2;
         $imageFile3 = $request->image3;
