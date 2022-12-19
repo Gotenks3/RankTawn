@@ -16,8 +16,8 @@
                             <!-- Additional required wrapper -->
                             <div class="swiper-wrapper">
                                 <!-- Slides -->
-                                <div class="swiper-slide"> <img src="{{ asset('storage/products/'  . $product->image1) }}" alt="{{ $product->image1 }}"></div>
-                                <div class="swiper-slide"> <img src="{{ asset('storage/products/'  . $product->image2) }}" alt="{{ $product->image2 }}"></div>
+                                <div class="swiper-slide"> <img src="{{ asset('storage/products/'  . $product->image1) }}" alt="{{ $product->image1 }}" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
+                                <div class="swiper-slide"> <img src="{{ asset('storage/products/'  . $product->image2) }}" alt="{{ $product->image2 }}" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
                                 <div class="swiper-slide"> <img src="{{ asset('storage/products/'  . $product->image3) }}" alt="{{ $product->image3 }}" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
                                 <div class="swiper-slide"> <img src="{{ asset('storage/products/'  . $product->image4) }}" alt="{{ $product->image4 }}" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
                             </div>
@@ -40,8 +40,8 @@
                                 <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->state }}</h2>
                             </div>
                             <div class="flex justify-center">
-                                <button type="button" onclick="location.href='{{ route('product.index')}}'" class="bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
-                                <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
+                                <button type="button" onclick="location.href='{{ route('product.index')}}'" class="bg-gray-200 border-0 py-2 px-8 mr-7 focus:outline-none hover:bg-gray-400 rounded text-lg">戻る</button>
+                                <button type="button" onclick="location.href='{{ route('product.edit', ['product' => $product->id])}}'" class="bg-blue-300 border-0 py-2 px-8 ml-7 focus:outline-none hover:bg-blue-400 rounded text-lg">編集する</button>
                             </div>
                         </div>
                     </div>

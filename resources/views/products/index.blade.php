@@ -10,12 +10,12 @@
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4">
                 @foreach ($products as $product )
-                <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <div class="lg:w-1/3 md:w-1/2 p-4 w-full">
                     <div class=" p-2 md:p-4">
                         <a href="{{ route('product.show',['product' => $product->id]) }}">
 
                             <div class="border rounded-md p-2 md:p-4">
-                                <img src="{{ asset('storage/products/' . $product->image1 ?? '') }}" alt="{{ $product->image1 }}">
+                                <img src="{{ asset('storage/products/' . $product->image1) }}" alt="{{ $product->image1 }}">
                   
                                 <div class="text-gray-700">{{ $product->name }}</div>
                             </div>
