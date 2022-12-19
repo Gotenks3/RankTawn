@@ -14,15 +14,9 @@
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">編集画面</h1>
                 </div>
                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+            
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />  
+                <x-auth-flash-message status="session('status')" /> 
                     <div class="flex flex-wrap -m-2">
                         <div class="p-2 w-2/2">
                             <div class="relative">
@@ -105,4 +99,5 @@
             </div>
         </form>
     </section>
+    
 </x-app-layout>

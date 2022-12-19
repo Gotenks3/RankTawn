@@ -170,7 +170,9 @@ class ProductController extends Controller
                 session()->flash('flash_message', '更新が失敗しました');
             }
 
-        return redirect()->route('product.index');
+        return redirect()
+        ->route('product.index')
+        ->with(['message' => '商品情報を更新しました。','status' => 'info']);;
 
     }
 }
