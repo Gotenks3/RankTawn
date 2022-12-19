@@ -39,7 +39,6 @@ class ProductController extends Controller
 
     public function store(ProductCreateRequest $request)
     {
-        dd($request);
         $imageFile1 = $request->image1;
         $imageFile2 = $request->image2;
         $imageFile3 = $request->image3;
@@ -94,7 +93,8 @@ class ProductController extends Controller
             }
 
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')
+        ->with(['message' => '商品を登録しました。' , 'status' => 'info']);
     }
 
     public function edit($product)
@@ -171,7 +171,9 @@ class ProductController extends Controller
                 session()->flash('flash_message', '更新が失敗しました');
             }
 
-        return redirect()->route('product.index');
+        return redirect()
+        ->route('product.index')
+        ->with(['message' => '商品情報を更新しました。','status' => 'info']);
 
     }
 }
