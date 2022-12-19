@@ -93,7 +93,8 @@ class ProductController extends Controller
             }
 
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')
+        ->with(['message' => '商品を登録しました。' , 'status' => 'info']);
     }
 
     public function edit($product)
@@ -172,7 +173,7 @@ class ProductController extends Controller
 
         return redirect()
         ->route('product.index')
-        ->with(['message' => '商品情報を更新しました。','status' => 'info']);;
+        ->with(['message' => '商品情報を更新しました。','status' => 'info']);
 
     }
 }

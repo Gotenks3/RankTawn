@@ -30,46 +30,14 @@
                                 <textarea id="content" name="content" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ $product->content }}</textarea>
                             </div>
                         </div>
-                        <div class="container mx-auto flex px-5 py-8 items-center justify-center flex-col">
-                            {{-- 画像１枚目 --}}
-                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">画像１枚目</h3>
-                            @if (is_null($product->image1))
-                            <div> <img src="{{ asset('storage/products/'  . 'kamera.png') }}" alt="no-image" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
-                            @else
-                            <div> <img src="{{ asset('storage/products/'  . $product->image1) }}" alt="{{ $product->image1 }}" class="lg:w-64 md:w-3/6 w-4/6 mb-10 object-cover object-center rounded"></div>
-                            @endif
-                            <input type="file" name="image1" value="画像を変更する" accept=“image/png,image/jpeg,image/jpg” class="mb-12">
-                            {{-- 画像２枚目 --}}
-                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">画像２枚目</h3>
-                            @if (is_null($product->image2))
-                            <div> <img src="{{ asset('storage/products/'  . 'kamera.png') }}" alt="no-image" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
-                            @else
-                            <div> <img src="{{ asset('storage/products/'  . $product->image2) }}" alt="{{ $product->image2 }}" class="lg:w-64 md:w-3/6 w-4/6 mb-10 object-cover object-center rounded"></div>
-                            @endif
-                            <input type="file" name="image2" value="画像を変更する" accept=“image/png,image/jpeg,image/jpg” class="mb-12">
-                            {{-- 画像３枚目 --}}
-                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">画像３枚目</h3>
-                            @if (is_null($product->image3))
-                            <div> <img src="{{ asset('storage/products/'  . 'kamera.png') }}" alt="no-image" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
-                            @else
-                            <div> <img src="{{ asset('storage/products/'  . $product->image3) }}" alt="{{ $product->image3 }}" class="lg:w-64 md:w-3/6 w-4/6 mb-10 object-cover object-center rounded"></div>
-                            @endif
-                            <input type="file" name="image3" value="画像を変更する" accept=“image/png,image/jpeg,image/jpg” class="mb-12">
-                            {{-- 画像４枚目 --}}
-                            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">画像４枚目</h3>
-                            @if (is_null($product->image4))
-                            <div> <img src="{{ asset('storage/products/'  . 'kamera.png') }}" alt="no-image" class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"></div>
-                            @else
-                            <div> <img src="{{ asset('storage/products/'  . $product->image4) }}" alt="{{ $product->image4 }}" class="lg:w-64 md:w-3/6 w-4/6 mb-10 object-cover object-center rounded"></div>
-                            @endif
-                            <input type="file" name="image4" placeholder="画像を変更する" accept=“image/png,image/jpeg,image/jpg” class="mb-12">
-                        </div>
+                        {{-- component読み込み --}}
+                        <x-product-image-display :product="$product" />
                         <div class="p-2 w-full">
                             <div class="relative">
                                 <label for="message" class="leading-7 text-sm text-gray-600">販売状況</label>
-                                <select name="is_selling" id="is_selling">
+                                <select name="is_selling" id="is_selling" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     @foreach($sell as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                    <option value="{{$key}}" @if( $product->is_selling === $key ) selected @endif >{{$value}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -77,15 +45,15 @@
                         <div class="p-2 w-full">
                             <div class="relative">
                                 <label for="message" class="leading-7 text-sm text-gray-600">料金</label>
-                                <input type="number" name="price" value="{{ $product->price }}">
+                                <input type="number" id="price" name="price" value="{{ $product->price }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
                         <div class="p-2 w-full">
                             <div class="relative">
                                 <label for="message" class="leading-7 text-sm text-gray-600">商品の状態</label>
-                                <select name="state" id="state">
+                                <select name="state" id="state" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     @foreach($status as $key => $value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                    <option value="{{$key}}" @if( $product->state === $key ) selected @endif>{{$value}}</option>
                                     @endforeach
                                 </select>
                             </div>
